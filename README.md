@@ -1,2 +1,13 @@
-Поставленная задача: Создайте консольное приложение на языке C#, которое сравнивает работу четырех популярных алгоритмов сортировки (пузырьком, вставками, быстрая сортировка, сортировка слиянием) на различных объемах данных (вводить 3 параметра вручную). Для каждой сортировки создайте отдельный класс. Использованные ссылки: https://code-maze.com/csharp-bubble-sort/ https://code-maze.com/insertion-sort-csharp/ https://code-maze.com/csharp-quicksort-algorithm/ https://code-maze.com/csharp-merge-sort/ https://learn.microsoft.com/ru-ru/dotnet/csharp/language-reference/keywords/abstract https://learn.microsoft.com/ru-ru/dotnet/csharp/fundamentals/tutorials/inheritance https://learn.microsoft.com/ru-ru/dotnet/csharp/programming-guide/classes-and-structs/methods . Используемые библиотеки: using System;
-using System.Diagnostics;. Возникшие трудности: создание классов, метод наследования абстрактных классов, создание производных классов сортировки, понимание основ c#. Крюков Андрей. 
+Поставленная задача: Создать класс Worker с полями: Name, Age, DateOfEmployment, Grade.
+Реализовать конструктор, свойства и метод ToString() для отображения информации о работнике.
+
+Реализовать меню для работы с коллекцией работников. Пункты: Добавление, Редактирование, Удаление, Вывод на экран, Сохранение в файл, Чтение из файла.
+
+Создать коллекцию List<Worker> и добавьте в нее несколько работников.
+Реализовать методы для добавления нового работника в коллекцию.
+
+Написать метод для сохранения коллекции работников в текстовый файл (формат CSV). Первая строка в файле – заголовки. Каждый работник должен быть записан в отдельной строке в формате: Name;Age;DateOfEmployment;Grade.
+
+Используемые библиотеки: using System; using System.Collections.Generic; using System.IO; using Task4.Class.
+
+Крюков Андрей. 

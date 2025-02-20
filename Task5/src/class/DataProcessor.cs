@@ -24,7 +24,71 @@ namespace Task5
     {
         _dataInterpreter = new DataInterpreter();
     }
+        public void ShowUsefulData()
+        {
+            if (_dataInterpreter.GetDataTable().Rows.Count == 0)
+            {
+                Console.WriteLine("Нет данных для отображения.");
+                return;
+            }
 
+            Console.WriteLine("Полезные данные:");
+
+            // Общее количество записей
+            Console.WriteLine($"Общее количество записей: {_dataInterpreter.GetDataTable().Rows.Count}");
+
+            // Пример: выводим средние значения для каждого DeviceId
+            var averages = new Dictionary<int, List<double>>();
+
+            foreach (DataRow row in _dataInterpreter.GetDataTable().Rows)
+            {
+                int deviceId = (int)row["DeviceId"];
+                double value = (double)row["Value"];
+
+                if (!averages.ContainsKey(deviceId))
+                {
+                    averages[deviceId] = new List<double>();
+                }
+                averages[deviceId].Add(value);
+            }
+
+            foreach (var kvp in averages)
+            {
+                double average = kvp.Value.Average();
+                Console.WriteLine($"Среднее значение для DeviceId {kvp.Key}: {average}");
+            }
+        }
+        public void ExportToExcel()
+        {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            if (_dataInterpreter.GetDataTable().Rows.Count == 0)
+            {
+                Console.WriteLine("Нет данных для экспорта.");
+                return;
+            }
+
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Полезные данные");
+                worksheet.Cells[1, 1].Value = "Timestamp";
+                worksheet.Cells[1, 2].Value = "DeviceId";
+                worksheet.Cells[1, 3].Value = "Value";
+
+                int row = 2; // Начинаем со второй строки, так как первая строка - заголовки
+                foreach (DataRow dataRow in _dataInterpreter.GetDataTable().Rows)
+                {
+                    worksheet.Cells[row, 1].Value = dataRow["Timestamp"];
+                    worksheet.Cells[row, 2].Value = dataRow["DeviceId"];
+                    worksheet.Cells[row, 3].Value = dataRow["Value"];
+                    row++;
+                }
+
+                // Сохранение файла
+                var filePath = "task5.xlsx"; // Укажите путь к файлу
+                package.SaveAs(new FileInfo(filePath));
+                Console.WriteLine($"Данные успешно экспортированы в {filePath}");
+            }
+        }
         public void LoadData()
         {
             try

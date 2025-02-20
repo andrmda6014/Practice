@@ -63,3 +63,5 @@ C:\Users\lappt\source\repos\Task5\src\obj\Debug\Task5.csproj.CoreCompileInputs.c
 C:\Users\lappt\source\repos\Task5\src\obj\Debug\Task5.csproj.Up2Date
 C:\Users\lappt\source\repos\Task5\src\obj\Debug\Task5.exe
 C:\Users\lappt\source\repos\Task5\src\obj\Debug\Task5.pdb
+C:\Users\lappt\source\repos\Task5\src\obj\Debug\Task5.csproj.SuggestedBindingRedirects.cache
+C:\Users\lappt\source\repos\Task5\src\obj\Debug\Task5.exe.config

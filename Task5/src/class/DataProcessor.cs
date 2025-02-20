@@ -14,16 +14,17 @@ namespace Task5
     {
         private Configuration _configuration; // Хранит конфигурацию
         public List<DataRecord> DataRecords { get; private set; } = new List<DataRecord>(); // Хранит данные
-
+        public bool IsConfigurationLoaded { get; private set; } = false; // Флаг для проверки загрузки конфигурации
+        public bool IsDataLoaded { get; private set; } = false; // Флаг для проверки загрузки данных
         private const string ConfigFilePath = "configuration.json"; // Путь к файлу конфигурации
         private const string DataDirectoryPath = "data"; // Папка с данными
 
         private DataInterpreter _dataInterpreter;
 
-    public DataProcessor()
-    {
+        public DataProcessor()
+        {
         _dataInterpreter = new DataInterpreter();
-    }
+        }
         public void ShowUsefulData()
         {
             if (_dataInterpreter.GetDataTable().Rows.Count == 0)
@@ -93,7 +94,7 @@ namespace Task5
         {
             try
             {
-                var csvFiles = Directory.GetFiles(DataDirectoryPath, "*.csv");
+                var csvFiles = Directory.GetFiles("data", "*.csv");
                 if (csvFiles.Length == 0)
                 {
                     Console.WriteLine("Нет CSV файлов в папке данных.");
@@ -120,29 +121,15 @@ namespace Task5
                     string line;
                     while ((line = reader.ReadLine()) != null)
                     {
-                        // Преобразование строки в массив байтов
                         byte[] data = ConvertStringToByteArray(line);
-                        if (data.Length == 0) // Пропускаем пустые массивы
-                        {
-                            continue;
-                        }
+                        if (data.Length == 0) continue;
 
-                        DateTime timestamp = DateTime.Now; // Здесь можно использовать реальное время
-
-                        // Интерпретация данных
+                        DateTime timestamp = DateTime.Now;
                         _dataInterpreter.InterpretData(data, timestamp);
                     }
                 }
 
-                // Получение DataTable с интерпретированными данными
-                DataTable dataTable = _dataInterpreter.GetDataTable();
-
-                // Вывод данных для проверки
-                foreach (DataRow row in dataTable.Rows)
-                {
-                    Console.WriteLine($"Timestamp: {row["Timestamp"]}, DeviceId: {row["DeviceId"]}, Value: {row["Value"]}");
-                }
-
+                IsDataLoaded = true; // Устанавливаем флаг
                 Console.WriteLine("Данные загружены и интерпретированы.");
             }
             catch (Exception ex)
@@ -188,25 +175,18 @@ namespace Task5
         {
             try
             {
-                var json = File.ReadAllText(ConfigFilePath);
+                var json = File.ReadAllText("configuration.json");
                 _configuration = JsonConvert.DeserializeObject<Configuration>(json);
 
-                if (_configuration == null || _configuration.Devices == null || !_configuration.Devices.Any())
+                if (_configuration != null && _configuration.Devices != null && _configuration.Devices.Count > 0)
                 {
-                    Console.WriteLine("Конфигурация не загружена или не содержит устройств.");
+                    Console.WriteLine("Конфигурация загружена успешно.");
+                    IsConfigurationLoaded = true; // Устанавливаем флаг
                 }
                 else
                 {
-                    Console.WriteLine("Конфигурация загружена успешно.");
+                    Console.WriteLine("Конфигурация не загружена или не содержит устройств.");
                 }
-            }
-            catch (FileNotFoundException)
-            {
-                Console.WriteLine("Файл конфигурации не найден.");
-            }
-            catch (System.Text.Json.JsonException ex)
-            {
-                Console.WriteLine($"Ошибка при десериализации JSON: {ex.Message}");
             }
             catch (Exception ex)
             {
@@ -218,14 +198,15 @@ namespace Task5
         {
             if (_configuration != null && _configuration.Devices != null)
             {
+                Console.WriteLine("Конфигурация устройств:");
                 foreach (var device in _configuration.Devices)
                 {
-                    Console.WriteLine($"\"{device.Key}\": {{ \"name\": \"{device.Value.Name}\" }}");
+                    Console.WriteLine($"Device Name: {device.Value.Name}");
                 }
             }
             else
             {
-                Console.WriteLine("Конфигурация не загружена или не содержит устройств.");
+                Console.WriteLine("Конфигурация не загружена.");
             }
         }
 

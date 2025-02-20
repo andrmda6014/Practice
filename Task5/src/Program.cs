@@ -10,17 +10,22 @@ namespace Task5
 
         public static void Main(string[] args)
         {
+            ShowMenu(); // Запуск меню
+        }
+
+        public static void ShowMenu()
+        {
             while (true)
             {
-                Console.WriteLine("Меню:");
-                Console.WriteLine("1. Прочитать конфигурацию");
-                Console.WriteLine("2. Вывести конфигурацию на экран");
-                Console.WriteLine("3. Прочитать файл с данными");
-                Console.WriteLine("4. Вывести строки данных (с N до M)");
-                Console.WriteLine("5. Показать полезные данные");
+                Console.WriteLine("\nВыберите действие:");
+
+                Console.WriteLine("1. Загрузить конфигурацию");
+                Console.WriteLine(_dataProcessor.IsConfigurationLoaded ? "2. Показать конфигурацию" : "2. Показать конфигурацию (недоступно)");
+                Console.WriteLine(_dataProcessor.IsDataLoaded ? "3. Загрузить данные" : "3. Загрузить данные (недоступно)");
+                Console.WriteLine(_dataProcessor.IsDataLoaded ? "4. Показать строки данных (введите N и M)" : "4. Показать строки данных (недоступно)");
+                Console.WriteLine(_dataProcessor.IsDataLoaded ? "5. Показать полезные данные" : "5. Показать полезные данные (недоступно)");
                 Console.WriteLine("6. Экспортировать в Excel");
                 Console.WriteLine("7. Выход");
-                Console.Write("Выберите опцию: ");
 
                 var choice = Console.ReadLine();
                 switch (choice)
@@ -29,23 +34,44 @@ namespace Task5
                         _dataProcessor.LoadConfiguration();
                         break;
                     case "2":
-                        _dataProcessor.ShowConfiguration();
+                        if (!_dataProcessor.IsConfigurationLoaded)
+                        {
+                            Console.WriteLine("Конфигурация еще не загружена.");
+                        }
+                        else
+                        {
+                            _dataProcessor.ShowConfiguration();
+                        }
                         break;
                     case "3":
-                        _dataProcessor.LoadData();
+                        _dataProcessor.LoadData(); // Здесь вызывается метод загрузки данных
                         break;
                     case "4":
-                        Console.Write("Введите N: ");
-                        int n = int.Parse(Console.ReadLine()) - 1; // Вычитаем 1 для корректного индекса
-                        Console.Write("Введите M: ");
-                        int m = int.Parse(Console.ReadLine());
-                        _dataProcessor.ShowData(n, m); // -1 для корректного индекса
+                        if (!_dataProcessor.IsDataLoaded)
+                        {
+                            Console.WriteLine("Данные еще не загружены.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Введите N:");
+                            int n = int.Parse(Console.ReadLine());
+                            Console.WriteLine("Введите M:");
+                            int m = int.Parse(Console.ReadLine());
+                            _dataProcessor.ShowData(n - 1, m);
+                        }
                         break;
                     case "5":
-                        _dataProcessor.ShowUsefulData(); // Вызов метода для показа полезных данных
+                        if (!_dataProcessor.IsDataLoaded)
+                        {
+                            Console.WriteLine("Данные еще не загружены.");
+                        }
+                        else
+                        {
+                            _dataProcessor.ShowUsefulData();
+                        }
                         break;
                     case "6":
-                        _dataProcessor.ExportToExcel(); // Вызов метода для экспорта в Excel
+                        _dataProcessor.ExportToExcel();
                         break;
                     case "7":
                         Console.WriteLine("Выход из программы.");

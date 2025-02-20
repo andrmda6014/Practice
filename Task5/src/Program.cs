@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.IO;
 using OfficeOpenXml;
-using Task5.Classes;
 
 namespace Task5
 {
-    internal class Program
+    public class Program
     {
         private static DataProcessor _dataProcessor = new DataProcessor();
 
@@ -38,10 +35,10 @@ namespace Task5
                         break;
                     case "4":
                         Console.Write("Введите N: ");
-                        int n = int.Parse(Console.ReadLine());
+                        int n = int.Parse(Console.ReadLine()) - 1; // Вычитаем 1 для корректного индекса
                         Console.Write("Введите M: ");
                         int m = int.Parse(Console.ReadLine());
-                        _dataProcessor.ShowData(n - 1, m); // -1 для корректного индекса
+                        _dataProcessor.ShowData(n, m); // -1 для корректного индекса
                         break;
                     case "5":
                         return; // Выход из программы

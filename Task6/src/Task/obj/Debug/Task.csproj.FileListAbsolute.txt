@@ -1,0 +1,7 @@
+C:\Users\lappt\source\repos\Task6\src\Task\obj\Debug\Task.csproj.AssemblyReference.cache
+C:\Users\lappt\source\repos\Task6\src\Task\obj\Debug\Task.csproj.CoreCompileInputs.cache
+C:\Users\lappt\source\repos\Task6\src\Task\bin\Debug\Task.exe.config
+C:\Users\lappt\source\repos\Task6\src\Task\bin\Debug\Task.exe
+C:\Users\lappt\source\repos\Task6\src\Task\bin\Debug\Task.pdb
+C:\Users\lappt\source\repos\Task6\src\Task\obj\Debug\Task.exe
+C:\Users\lappt\source\repos\Task6\src\Task\obj\Debug\Task.pdb

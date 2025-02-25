@@ -1,0 +1,7 @@
+C:\Users\lappt\source\repos\Task6\src\AsyncAwait\bin\Debug\AsyncAwait.exe.config
+C:\Users\lappt\source\repos\Task6\src\AsyncAwait\bin\Debug\AsyncAwait.exe
+C:\Users\lappt\source\repos\Task6\src\AsyncAwait\bin\Debug\AsyncAwait.pdb
+C:\Users\lappt\source\repos\Task6\src\AsyncAwait\obj\Debug\AsyncAwait.csproj.AssemblyReference.cache
+C:\Users\lappt\source\repos\Task6\src\AsyncAwait\obj\Debug\AsyncAwait.csproj.CoreCompileInputs.cache
+C:\Users\lappt\source\repos\Task6\src\AsyncAwait\obj\Debug\AsyncAwait.exe
+C:\Users\lappt\source\repos\Task6\src\AsyncAwait\obj\Debug\AsyncAwait.pdb

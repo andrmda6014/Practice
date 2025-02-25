@@ -1,0 +1,7 @@
+C:\Users\lappt\source\repos\Task6\src\ParallelFor\bin\Debug\ParallelFor.exe.config
+C:\Users\lappt\source\repos\Task6\src\ParallelFor\bin\Debug\ParallelFor.exe
+C:\Users\lappt\source\repos\Task6\src\ParallelFor\bin\Debug\ParallelFor.pdb
+C:\Users\lappt\source\repos\Task6\src\ParallelFor\obj\Debug\ParallelFor.csproj.AssemblyReference.cache
+C:\Users\lappt\source\repos\Task6\src\ParallelFor\obj\Debug\ParallelFor.csproj.CoreCompileInputs.cache
+C:\Users\lappt\source\repos\Task6\src\ParallelFor\obj\Debug\ParallelFor.exe
+C:\Users\lappt\source\repos\Task6\src\ParallelFor\obj\Debug\ParallelFor.pdb

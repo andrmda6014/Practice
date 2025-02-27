@@ -1,0 +1,13 @@
+﻿<Window x:Class="Task7.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Task7"
+        mc:Ignorable="d"
+        Title="Окно1" Height="1080" Width="1920">
+    <Grid Margin="10,0,10,6">
+        <TextBox Name="Name" Margin="560,342,662,625"/>
+        <Button Name="VerifyButton" Content="Верифицировать" Margin="696,598,798,369" Click="VerifyButton_Click"/>
+    </Grid>
+</Window>

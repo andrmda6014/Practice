@@ -1,0 +1,68 @@
+﻿<Window x:Class="Task8.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Task8"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical">
+            <ComboBox x:Name="comboBox" SelectionChanged="ComboBox_SelectionChanged">
+                <ComboBoxItem Content="Красный" />
+                <ComboBoxItem Content="Зеленый" />
+                <ComboBoxItem Content="Синий" />
+            </ComboBox>
+            <ProgressBar x:Name="progressBar" Height="20" />
+            <StackPanel Orientation="Vertical">
+                <Button Content="Кнопка 1" ToolTip="Это кнопка 1" Click="Button_Click" />
+                <Button Content="Кнопка 2" ToolTip="Это кнопка 2" Click="Button_Click" />
+                <Button Content="Кнопка 3" ToolTip="Это кнопка 3" Click="Button_Click" />
+            </StackPanel>
+        </StackPanel>
+
+        <DockPanel Grid.Column="1" Grid.Row="0">
+            <TextBox x:Name="textBox" Height="100" />
+            <Button Content="Кнопка" DockPanel.Dock="Bottom" Click="Button_Click" />
+            <DatePicker x:Name="datePicker" SelectedDateChanged="DatePicker_SelectedDateChanged" />
+            <Slider x:Name="slider" Minimum="8" Maximum="32" ValueChanged="Slider_ValueChanged" />
+        </DockPanel>
+
+        <WrapPanel Grid.Column="2" Grid.Row="0">
+            <CheckBox x:Name="checkBox" Content="Проверка" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+            <GroupBox Header="Группа радиокнопок">
+                <StackPanel>
+                    <RadioButton Content="Опция 1" GroupName="Group1" />
+                    <RadioButton Content="Опция 2" GroupName="Group1" />
+                </StackPanel>
+            </GroupBox>
+            <ListBox Grid.Column="2" Grid.Row="1" x:Name="listBox" SelectionChanged="ListBox_SelectionChanged">
+                <ListBoxItem Content="Элемент 1" />
+                <ListBoxItem Content="Элемент 2" />
+                <ListBoxItem Content="Элемент 3" />
+                <ListBoxItem Content="Элемент 4" />
+                <ListBoxItem Content="Элемент 5" />
+            </ListBox>
+            <WrapPanel>
+                <RadioButton Content="Опция 3" GroupName="Group2" />
+                <RadioButton Content="Опция 4" GroupName="Group2" />
+                <RadioButton Content="Опция 5" GroupName="Group2" />
+            </WrapPanel>
+        </WrapPanel>
+
+
+        <Canvas x:Name="canvas" Grid.Column="1" Grid.Row="0" Background="Transparent" MouseMove="Canvas_MouseMove">
+            <Ellipse x:Name="ellipse" Fill="Blue" Width="50" Height="50" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown" MouseLeftButtonUp="Ellipse_MouseLeftButtonUp" Canvas.Left="10" Canvas.Top="10" RenderTransformOrigin="0.517,0.486" />
+        </Canvas>
+    </Grid>
+</Window>

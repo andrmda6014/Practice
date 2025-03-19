@@ -1,0 +1,41 @@
+﻿<Window x:Class="Task12.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Task List" Height="350" Width="525">
+    <Grid>
+        <StackPanel>
+            <TextBox Text="{Binding NewTaskName, UpdateSourceTrigger=PropertyChanged}" 
+                     Width="200" Margin="10" />
+            <Button Content="Добавить задачу" Command="{Binding AddTaskCommand}" Width="100" Margin="10" />
+            <Button Content="Редактировать задачу" Command="{Binding EditTaskCommand}" Width="132" Margin="10" />
+            <Button Content="Удалить задачу" 
+                    Command="{Binding RemoveTaskCommand}" 
+                    CommandParameter="{Binding SelectedTask}" 
+                    Width="100" Margin="10" />
+            <ComboBox ItemsSource="{Binding FilterOptions}" 
+                       SelectedItem="{Binding Filter}" 
+                       Width="200" Margin="10">
+                <ComboBoxItem Content="Все" />
+                <ComboBoxItem Content="Завершенные" />
+                <ComboBoxItem Content="Не завершенные" />
+            </ComboBox>
+            <Button Content="Сохранить задачи" Command="{Binding SaveTasksCommand}" Width="106" Margin="10" />
+            <Button Content="Загрузить задачи" Command="{Binding LoadTasksCommand}" Width="106" Margin="10" />
+            <ListBox ItemsSource="{Binding FilteredTasks}" 
+                     SelectedItem="{Binding SelectedTask}" 
+                     Height="200" Margin="10">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox IsChecked="{Binding IsCompleted}" 
+                                      Content="{Binding Name}" 
+                                      Command="{Binding DataContext.MarkAsCompletedCommand, 
+                                      RelativeSource={RelativeSource AncestorType=ListBox}}" 
+                                      CommandParameter="{Binding}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+    </Grid>
+</Window>
